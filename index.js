@@ -22,12 +22,18 @@ server.post("/projects", (req, res) => {
 
 //Adicionar tarefa ao projeto
 server.post("/projects/:index/:tasks/", (req, res) => {
-  //Percorrer todos os projetos cadastrados para alterar somente o de id específico
+  //Percorrer todos os projetos cadastrados para alterar
+  //somente o de id específico
   for (var project of projects) {
     if (project.id === req.params.index) {
       project.tasks.push(req.params.tasks);
     }
   }
 
+  return res.json(projects);
+});
+
+//Exibir projetos
+server.get("/projects", (req, res) => {
   return res.json(projects);
 });
